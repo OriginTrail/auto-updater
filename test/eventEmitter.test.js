@@ -4,7 +4,10 @@ var AutoUpdater = require('../auto-updater');
 
 describe('Event Emitter', function() {
 
-  var instance = new AutoUpdater();
+  var instance = new AutoUpdater({
+      repo: 'juampi92/auto-updater',
+      branch: 'master',
+  });
 
   it('should have methods', function() {
     instance.should.have.properties('on', 'addListener', 'on', 'once', 'removeListener', 'removeAllListeners', 'setMaxListeners', 'listeners', 'emit');

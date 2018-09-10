@@ -4,9 +4,11 @@ var fs = require('fs');
 var AutoUpdater = require('../auto-updater');
 
 describe('Fire Commands: Extract', function() {
-
+  global.__basedir = `${__dirname}/../`;
   var instance = new AutoUpdater({
     pathToJson: 'test/assets/',
+    repo: 'juampi92/auto-updater',
+    branch: 'master',
     devmode: true,
     progressDebounce: 0
   });

@@ -35,9 +35,5 @@
   },
   "scripts": {
     "test": "mocha --reporter spec test/*.js"
-  },
-  "auto-updater": {
-    "repo": "juampi92/auto-updater",
-    "branch": "v1.0.0"
   }
 }

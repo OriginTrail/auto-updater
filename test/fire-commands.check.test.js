@@ -10,6 +10,8 @@ describe('Fire Commands: Check', function() {
   describe('Check up-to-date', function() {
     var instance = new AutoUpdater({
       pathToJson: '/test/assets/',
+      repo: 'juampi92/auto-updater',
+      branch: 'master',
       devmode: true
     });
 
@@ -45,6 +47,8 @@ describe('Fire Commands: Check', function() {
 
     var instance2 = new AutoUpdater({
       pathToJson: 'test/assets/older/',
+      repo: 'juampi92/auto-updater',
+      branch: 'master',
       devmode: true
     });
 

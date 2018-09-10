@@ -22,6 +22,10 @@ var AutoUpdater = function(config) {
   this.update_dest = 'update';
   this.cache = {};
   this.jsons = {};
+
+  if (_.isEmpty(this.attrs.repo) || _.isEmpty(this.attrs.branch)) {
+    throw Error('"repo" and "branch" parameters are required.');
+  }
 };
 
 // Proto inheritance
@@ -104,6 +108,19 @@ AutoUpdater.defaults = {
    * @type {Boolean}
    * @default false
    */
+  /**
+   * @attribute repo Repository to look at.
+   * @type {String} URL to repository
+   * @default ''
+   */
+  repo: '',
+  /**
+   * @attribute branch A branch on repository to look for update.
+   * @type {String} Name of the branch
+   * @default ''
+   */
+  branch: '',
+
   autoupdate: false,
   /**
    * @attribute checkgit
@@ -223,9 +240,9 @@ var commands = {
 
     remoteDownloadUpdate.call(this, this.updateName, {
         host: this.attrs.contenthost,
-        path: '/' + path.join(jsoninfo.repo,
+        path: '/' + path.join(this.attrs.repo,
           'zip',
-          jsoninfo.branch)
+            this.attrs.branch)
       })
       .then(function(existed) {
         if (existed === true)
@@ -281,8 +298,8 @@ var parsePackageJson = function(data) {
     data = JSON.parse(data);
   }
   // Validation
-  if (!data['auto-updater']) {
-    this.error('Invalid package.json. No auto-updater field', 'json.error');
+  if (!data['version']) {
+    this.error('Invalid package.json. No version field', 'json.error');
     throw 'error';
   }
 
@@ -341,8 +358,8 @@ var loadClientJson = function() {
 var loadRemoteJson = function() {
   var self = this,
     jsoninfo = self.jsons.client['auto-updater'],
-    repo = jsoninfo.repo,
-    branch = jsoninfo.branch,
+    repo = this.attrs.repo,
+    branch = this.attrs.branch,
     jsonPath = path.join(repo,
       branch,
       this.attrs.pathToJson,

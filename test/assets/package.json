@@ -1,7 +1,3 @@
 {
-  "version": "0.1.0",
-  "auto-updater": {
-    "repo": "juampi92/auto-updater",
-    "branch": "master"
-  }
+  "version": "0.1.0"
 }

@@ -6,9 +6,11 @@ var AutoUpdater = require('../auto-updater');
 describe('Fire Commands: Download', function() {
 
   describe('Download update', function() {
-
+    global.__basedir = `${__dirname}/../`;
     var instance = new AutoUpdater({
       pathToJson: 'test/assets/',
+      repo: 'juampi92/auto-updater',
+      branch: 'master',
       devmode: true,
       progressDebounce: 0
     });
@@ -16,17 +18,9 @@ describe('Fire Commands: Download', function() {
     instance.jsons = {
       client: {
         "version": "0.0.4",
-        "auto-updater": {
-          "repo": "juampi92/auto-updater",
-          "branch": "v1.0.0"
-        }
       },
       remote: {
         "version": "0.1.0",
-        "auto-updater": {
-          "repo": "juampi92/auto-updater",
-          "branch": "v1.0.0"
-        }
       }
     };
     instance.updateName = instance.update_dest + '-' + instance.jsons.remote.version + '.zip';

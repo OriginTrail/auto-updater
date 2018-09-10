@@ -6,7 +6,10 @@ var EventEmitter = require('events').EventEmitter;
 
 describe('Basic Initialization', function() {
 
-  var instance = new AutoUpdater();
+  var instance = new AutoUpdater({
+      repo: 'dummy/repo',
+      branch: 'master',
+  });
 
   it('should inherit EventEmitter', function() {
     instance.should.be.an.instanceOf(EventEmitter);

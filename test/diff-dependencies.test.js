@@ -5,7 +5,9 @@ var AutoUpdater = require('../auto-updater');
 describe('Diff Dependencies', function() {
 
   var instance = new AutoUpdater({
-    devmode: true
+    repo: 'juampi92/auto-updater',
+    branch: 'master',
+    devmode: true,
   });
 
   instance.jsons = {
